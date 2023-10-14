@@ -17,6 +17,7 @@ import SouthOutlinedIcon from '@mui/icons-material/SouthOutlined';
 import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
 import { BarChart } from '@mui/x-charts/BarChart';
 import { PieChart } from '@mui/x-charts/PieChart';
+import { useDrawingArea } from '@mui/x-charts/hooks';
 
 const drawerWidth = 240;
 
@@ -150,8 +151,19 @@ function generate(element) {
   );
 }
 
-function Dashboard() {
+const StyledText = styled('text')(({ theme }) => ({
+  fill: theme.palette.text.primary,
+  textAnchor: 'middle',
+  dominantBaseline: 'central',
+  fontSize: 20,
+}));
 
+
+function Dashboard() {
+  const width=useDrawingArea().width;
+  const height=useDrawingArea().height;
+  const left=useDrawingArea().left;
+  const top=useDrawingArea().top;
   return (
     <Box sx={{ display: 'flex' }}>
       <Drawer
@@ -266,12 +278,15 @@ function Dashboard() {
                   </Grid>
                 </Grid>
               </Grid>
+              
               <Grid item display={'flex'} flexDirection={'column'} alignContent={'center'}
                 sx={{ background: 'white', borderRadius: '5px', boxShadow: 2, p: 3 }}>
                 <Typography fontSize={'18px'} fontWeight='bold'>Customers</Typography>
                 <Typography fontSize={'10px'} color={'#757575'}>Customers that buy the products</Typography>
                 <PieChart series={[{ data: piedata, innerRadius: 40 }]} {...size}>
+                <StyledText x={left + width / 2} y={top + height / 2}>
                    <Typography>65%</Typography>
+                </StyledText>
                 </PieChart>
               </Grid>
             </Grid>
