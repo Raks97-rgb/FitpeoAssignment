@@ -8,7 +8,7 @@ import AccountBalanceWalletOutlinedIcon from '@mui/icons-material/AccountBalance
 import StarsOutlinedIcon from '@mui/icons-material/StarsOutlined';
 import FeedbackOutlinedIcon from '@mui/icons-material/FeedbackOutlined';
 import KeyboardArrowRightOutlinedIcon from '@mui/icons-material/KeyboardArrowRightOutlined';
-import { styled } from '@mui/material/styles';
+import { styled } from '@mui/material/styles'; 
 import SearchIcon from '@mui/icons-material/Search';
 import CurrencyExchangeOutlinedIcon from '@mui/icons-material/CurrencyExchangeOutlined';
 import NorthOutlinedIcon from '@mui/icons-material/NorthOutlined';
@@ -287,7 +287,7 @@ function Dashboard() {
                 <StyledText x={left + width / 2} y={top + height / 2}>
                    <Typography>65%</Typography>
                 </StyledText>
-                </PieChart>
+                </PieChart> 
               </Grid>
             </Grid>
           </Grid>
