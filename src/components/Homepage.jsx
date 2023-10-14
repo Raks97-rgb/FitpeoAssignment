@@ -200,7 +200,7 @@ function Dashboard() {
           </Grid>
         </Grid>
       </Drawer>
-      <Box component="main" sx={{ px: 5, py: 3, background: '#cfd8dc' }}>
+      <Box component="main" sx={{ px: 5, py: 3, background: '#cfd8dc',flexGrow:1 }}>
         <Grid container display={'flex'} flexDirection={'column'} rowGap={3}>
           <Grid item>
             <Grid container display={'flex'} flexDirection={'row'} justifyContent={'space-between'}>
@@ -220,7 +220,7 @@ function Dashboard() {
             </Grid>
           </Grid>
           <Grid item>
-            <Grid container display={'flex'} flexDirection={'row'} columnGap={5.6}>
+            <Grid container display={'flex'} flexDirection={'row'} justifyContent={'space-between'}>
               {carditems.map((item) => (
                 <Grid item sx={{ boxShadow: 2, borderRadius: '5px', bgcolor: 'white' }}>
                   <Grid container display={'flex'} flexDirection={'row'} alignItems={'center'} columnGap={3} p={2} key={item.id}>
@@ -240,7 +240,7 @@ function Dashboard() {
             </Grid>
           </Grid>
           <Grid item>
-            <Grid container display={'flex'} flexDirection={'row'} columnGap={5}>
+            <Grid container display={'flex'} flexDirection={'row'} justifyContent={'space-between'}>
               <Grid item>
                 <Grid container display={'flex'} flexDirection={'column'}
                   sx={{ boxShadow: 2, borderRadius: '5px', bgcolor: 'white', p: 3 }}>
