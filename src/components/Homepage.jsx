@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Box, Drawer, Typography, Grid, List, ListItem, InputBase, ListItemText, Avatar, Icon, ListItemButton } from '@mui/material';
+import { Box, Drawer, Typography, Grid, List, ListItem, InputBase, ListItemText, Avatar, Icon, ListItemButton, Divider } from '@mui/material';
 import TokenOutlinedIcon from '@mui/icons-material/TokenOutlined';
 import SpaceDashboardOutlinedIcon from '@mui/icons-material/SpaceDashboardOutlined';
 import ViewInArOutlinedIcon from '@mui/icons-material/ViewInArOutlined';
@@ -8,7 +8,7 @@ import AccountBalanceWalletOutlinedIcon from '@mui/icons-material/AccountBalance
 import StarsOutlinedIcon from '@mui/icons-material/StarsOutlined';
 import FeedbackOutlinedIcon from '@mui/icons-material/FeedbackOutlined';
 import KeyboardArrowRightOutlinedIcon from '@mui/icons-material/KeyboardArrowRightOutlined';
-import { styled } from '@mui/material/styles'; 
+import { styled } from '@mui/material/styles';
 import SearchIcon from '@mui/icons-material/Search';
 import CurrencyExchangeOutlinedIcon from '@mui/icons-material/CurrencyExchangeOutlined';
 import NorthOutlinedIcon from '@mui/icons-material/NorthOutlined';
@@ -18,6 +18,9 @@ import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
 import { BarChart } from '@mui/x-charts/BarChart';
 import { PieChart } from '@mui/x-charts/PieChart';
 import { useDrawingArea } from '@mui/x-charts/hooks';
+import img1 from '../images/abstract.jpg';
+import img2 from '../images/space.jpg'
+import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined';
 
 const drawerWidth = 240;
 
@@ -64,7 +67,7 @@ const carditems = [
     name2: '$198k',
     name3icn: <NorthOutlinedIcon sx={{ fontSize: 12 }} />,
     name3clr: 'green',
-    name31: '37.8%',
+    name31: '3.8%',
     name32: 'this month'
   },
   {
@@ -119,6 +122,27 @@ const size = {
   height: 200,
 };
 
+const tableitems = [
+  {
+    id:1,
+    img:img1,
+    sec1:'Abstract 3D',
+    sec2:'Lorem ipsum sit amel consetuer adapising eit',
+    stock:'32 in stock',
+    price:'$45.99',
+    tsales:'20',
+  },
+  {
+    id:2,
+    img:img2,
+    sec1:'Sarphens Illustration',
+    sec2:'Lorem ipsum sit amel consetuer adapising eit',
+    stock:'32 in stock',
+    price:'$45.99',
+    tsales:'20',
+  },
+]
+
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
@@ -158,12 +182,17 @@ const StyledText = styled('text')(({ theme }) => ({
   fontSize: 20,
 }));
 
-
 function Dashboard() {
-  const width=useDrawingArea().width;
-  const height=useDrawingArea().height;
-  const left=useDrawingArea().left;
-  const top=useDrawingArea().top;
+  const width = useDrawingArea().width;
+  const height = useDrawingArea().height;
+  const left = useDrawingArea().left;
+  const top = useDrawingArea().top;
+
+  const [value, setValue] = React.useState('');
+
+  const handleChange = (event) => {
+    setValue(event.target.value);
+  };
   return (
     <Box sx={{ display: 'flex' }}>
       <Drawer
@@ -180,7 +209,7 @@ function Dashboard() {
       >
         <Grid container display={'flex'} flexDirection={'column'}>
           <Grid item>
-            <Grid item container display={'flex'} flexDirection={'column'} rowSpacing={0.1}>
+            <Grid container display={'flex'} flexDirection={'column'} rowSpacing={0.1}>
               <Grid item display={'flex'} flexDirection={'row'} alignItems={'center'} columnGap={1} px={3} pb={2} mt={3}>
                 <TokenOutlinedIcon sx={{ color: 'white', fontSize: '30px' }} />
                 <Typography variant='h5' color={'white'} fontWeight={'bolder'}>Dashboard</Typography>
@@ -188,11 +217,13 @@ function Dashboard() {
               {items.map((item) => (
                 <List key={item.id} disablePadding>
                   {generate(
-                    <ListItemButton sx={{height:'50px'}}>
+                    <ListItemButton sx={{ height: '50px' }}>
                       <ListItem
                         secondaryAction={
                           <Icon edge="end" sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', fontSize: '20px', color: 'white' }}>
+                            {item.id > 1 ?
                             <KeyboardArrowRightOutlinedIcon />
+                           : ''}
                           </Icon>
                         }>
                         <Icon sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', fontSize: '25px', color: 'white' }}>{item.icon}</Icon>
@@ -207,12 +238,20 @@ function Dashboard() {
               ))}
             </Grid>
           </Grid>
-          <Grid item>
-
+          <Grid item pt={25} px={4}>
+              <Grid item display={'flex'} flexDirection={'row'} alignItems={'center'} columnGap={1}
+               sx={{background:'#78909c',p:1,borderRadius:'5px'}}>
+              <Avatar src={img2} sx={{height:30,width:30}}/>
+              <Grid item display={'flex'} flexDirection={'column'}>
+                <Typography fontSize={'12px'} color={'white'} fontWeight={'bold'}>Evano</Typography>
+                <Typography fontSize={'10px'} color={'#eeeeee'}>Project Manager</Typography>
+              </Grid>
+              <KeyboardArrowDownOutlinedIcon sx={{pl:1.9,color:'white'}}/>
+              </Grid>
           </Grid>
         </Grid>
       </Drawer>
-      <Box component="main" sx={{ px: 5, py: 3, background: '#cfd8dc',flexGrow:1 }}>
+      <Box component="main" sx={{ px: 5, py: 3, background: '#cfd8dc', flexGrow: 1 ,height:'100%'}}>
         <Grid container display={'flex'} flexDirection={'column'} rowGap={3}>
           <Grid item>
             <Grid container display={'flex'} flexDirection={'row'} justifyContent={'space-between'}>
@@ -234,7 +273,7 @@ function Dashboard() {
           <Grid item>
             <Grid container display={'flex'} flexDirection={'row'} justifyContent={'space-between'}>
               {carditems.map((item) => (
-                <Grid item sx={{ boxShadow: 2, borderRadius: '5px', bgcolor: 'white' }}>
+                <Grid item sx={{ boxShadow: 2, borderRadius: '5px', bgcolor: 'white'}}>
                   <Grid container display={'flex'} flexDirection={'row'} alignItems={'center'} columnGap={3} p={2} key={item.id}>
                     <Grid item>
                       <Avatar sx={{ width: 80, height: 80, background: item.bgclr, color: item.clr }}>{item.icon}</Avatar>
@@ -261,12 +300,13 @@ function Dashboard() {
                       <Typography fontSize={'18px'} fontWeight={'bolder'}>Overview</Typography>
                       <Typography fontSize={'12px'} color={'#607d8b'}>Monthly Earning</Typography>
                     </Grid>
-                    <Grid item>
-                      <Typography>Quaterly</Typography>
+                    <Grid item display={'flex'} flexDirection={'row'} alignItems={'center'}>
+                      <Typography fontSize={'15px'}>Quaterly</Typography>
+                      <KeyboardArrowDownOutlinedIcon/>
                     </Grid>
                   </Grid>
                   <Grid item>
-                    <BarChart
+                    <BarChart 
                       width={680}
                       height={200}
                       series={[
@@ -278,16 +318,70 @@ function Dashboard() {
                   </Grid>
                 </Grid>
               </Grid>
-              
               <Grid item display={'flex'} flexDirection={'column'} alignContent={'center'}
                 sx={{ background: 'white', borderRadius: '5px', boxShadow: 2, p: 3 }}>
                 <Typography fontSize={'18px'} fontWeight='bold'>Customers</Typography>
                 <Typography fontSize={'10px'} color={'#757575'}>Customers that buy the products</Typography>
                 <PieChart series={[{ data: piedata, innerRadius: 40 }]} {...size}>
-                <StyledText x={left + width / 2} y={top + height / 2}>
-                   <Typography>65%</Typography>
-                </StyledText>
-                </PieChart> 
+                  {/* <StyledText x={left + width / 2} y={top + height / 2}>
+                    <Typography>65%</Typography>
+                  </StyledText> */}
+                </PieChart>
+              </Grid>
+            </Grid>
+          </Grid>
+          <Grid item>
+            <Grid container display={'flex'} flexDirection={'column'} rowGap={2}
+              sx={{ background: 'white', p: 3, boxShadow: 2, borderRadius: '5px' }}>
+              <Grid item>
+                <Grid container display={'flex'} flexDirection={'row'} justifyContent={'space-between'}>
+                  <Grid item>
+                    <Typography variant='h6' fontWeight={'bold'}>Product Sell</Typography>
+                  </Grid>
+                  <Grid item display={'flex'} flexDirection={'row'} alignItems={'center'} columnGap={1}>
+                    <Search sx={{ background: '#eeeeee', width: '150px' ,height:'30px'}}>
+                      <SearchIconWrapper>
+                        <SearchIcon />
+                      </SearchIconWrapper>
+                      <StyledInputBase
+                        placeholder="Search…"
+                      />
+                    </Search>
+                    <Typography fontSize={'12px'}>Last 30 days</Typography>
+                    <KeyboardArrowDownOutlinedIcon/>
+                  </Grid>
+                </Grid>
+              </Grid>
+              <Grid item>
+                <Grid container display={'flex'} flexDirection={'row'} justifyContent={'space-between'}>
+                  <Grid item>
+                    <Typography fontSize='12px' color={'#78909c'}>Product Name</Typography>
+                  </Grid>
+                  <Grid item display={'flex'} flexDirection={'row'} columnGap={5}>
+                    <Typography fontSize='12px' color={'#78909c'}>Stock</Typography>
+                    <Typography fontSize='12px' color={'#78909c'}>Price</Typography>
+                    <Typography fontSize='12px' color={'#78909c'}>Total Sales</Typography>
+                  </Grid>
+                </Grid>
+              </Grid>
+              <Divider/>
+              <Grid item>
+                {tableitems.map((item) => (
+                <Grid container display={'flex'} flexDirection={'row'} justifyContent={'space-between'} key={item.id}>
+                  <Grid item display={'flex'} flexDirection={'row'} alignItems={'center'} columnGap={1} pb={2}>
+                    <img src={item.img} height={'40px'} width={'70px'} style={{borderRadius:'5px'}}/>
+                    <Grid item>
+                      <Typography fontSize={'15px'} fontWeight={'bold'}>{item.sec1}</Typography>
+                      <Typography fontSize={'12px'} color={'#78909c'}>{item.sec2}</Typography>
+                    </Grid>
+                  </Grid>
+                  <Grid item display={'flex'} flexDirection={'row'} alignItems={'center'} columnGap={6.3}>
+                    <Typography fontSize='12px' sx={{mr:-1}}>{item.stock}</Typography>
+                    <Typography fontSize='12px'fontWeight={'bold'}sx={{mr:3}}>{item.price}</Typography>
+                    <Typography fontSize='12px'>{item.tsales}</Typography>
+                  </Grid>
+                </Grid>
+                ))}
               </Grid>
             </Grid>
           </Grid>
