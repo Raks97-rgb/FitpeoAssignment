@@ -17,13 +17,9 @@ import SouthOutlinedIcon from '@mui/icons-material/SouthOutlined';
 import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
 import { BarChart } from '@mui/x-charts/BarChart';
 import { PieChart } from '@mui/x-charts/PieChart';
-<<<<<<< HEAD
-import { useDrawingArea } from '@mui/x-charts/hooks';
 import img1 from '../images/abstract.jpg';
 import img2 from '../images/space.jpg'
 import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined';
-=======
->>>>>>> parent of 770fc8c (added width/2 height/2)
 
 const drawerWidth = 240;
 
@@ -178,29 +174,8 @@ function generate(element) {
   );
 }
 
-<<<<<<< HEAD
-const StyledText = styled('text')(({ theme }) => ({
-  fill: theme.palette.text.primary,
-  textAnchor: 'middle',
-  dominantBaseline: 'central',
-  fontSize: 20,
-}));
-
-function Dashboard() {
-  const width = useDrawingArea().width;
-  const height = useDrawingArea().height;
-  const left = useDrawingArea().left;
-  const top = useDrawingArea().top;
-
-  const [value, setValue] = React.useState('');
-
-  const handleChange = (event) => {
-    setValue(event.target.value);
-  };
-=======
 function Dashboard() {
 
->>>>>>> parent of 770fc8c (added width/2 height/2)
   return (
     <Box sx={{ display: 'flex' }}>
       <Drawer
@@ -331,13 +306,7 @@ function Dashboard() {
                 <Typography fontSize={'18px'} fontWeight='bold'>Customers</Typography>
                 <Typography fontSize={'10px'} color={'#757575'}>Customers that buy the products</Typography>
                 <PieChart series={[{ data: piedata, innerRadius: 40 }]} {...size}>
-<<<<<<< HEAD
-                  {/* <StyledText x={left + width / 2} y={top + height / 2}>
-                    <Typography>65%</Typography>
-                  </StyledText> */}
-=======
                    <Typography>65%</Typography>
->>>>>>> parent of 770fc8c (added width/2 height/2)
                 </PieChart>
               </Grid>
             </Grid>
